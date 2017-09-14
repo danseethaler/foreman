@@ -41,3 +41,4 @@ module Net
     attr_accessor :type, :expected, :actual, :message
   end
 end
+# test
