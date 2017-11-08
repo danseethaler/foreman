@@ -1,24 +1,24 @@
 // Configure Enzyme
-import { configure } from 'enzyme';
+// Configure Enzyme
 import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
-
-jest.unmock('./Panel');
-
-import React from 'react';
-import {mount, shallow} from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { configure, mount, shallow } from 'enzyme';
+import React from 'react';
+
 import Panel from './Panel';
 import PanelHeading from './PanelHeading';
 import PanelTitle from './PanelTitle';
 import PanelBody from './PanelBody';
 import PanelFooter from './PanelFooter';
 
+configure({ adapter: new Adapter() });
+
+jest.unmock('./Panel');
+
 function mountPanel(type) {
-  return mount(
-    <Panel type={type || ''}>
+  return mount(<Panel type={type || ''}>
     <PanelHeading>
-      <PanelTitle text="Title"></PanelTitle>
+      <PanelTitle text="Title" />
     </PanelHeading>
     <PanelBody>
       <ul>
@@ -36,10 +36,9 @@ function mountPanel(type) {
 describe('Panel', () => {
   describe('Panel and composition', () => {
     function getPanel(type) {
-      return shallow(
-        <Panel type={type || ''}>
-          <PanelBody></PanelBody>
-        </Panel>);
+      return shallow(<Panel type={type || ''}>
+        <PanelBody />
+                     </Panel>);
     }
 
     it('Panel composition', () => {
@@ -61,10 +60,9 @@ describe('Panel', () => {
 
   describe('PanelHeading', () => {
     function getHeading() {
-      return shallow(
-        <PanelHeading>
-          <PanelTitle text="Title"></PanelTitle>
-        </PanelHeading>);
+      return shallow(<PanelHeading>
+        <PanelTitle text="Title" />
+                     </PanelHeading>);
     }
 
     it('has children', () => {
@@ -81,9 +79,7 @@ describe('Panel', () => {
 
   describe('PanelTitle', () => {
     function getTitle() {
-      return shallow(
-        <PanelTitle text="Title"></PanelTitle>
-      );
+      return shallow(<PanelTitle text="Title" />);
     }
 
     it('renders correct text', () => {
@@ -101,15 +97,13 @@ describe('Panel', () => {
 
   describe('PanelBody', () => {
     function getBody() {
-      return shallow(
-        <PanelBody>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-        </PanelBody>
-      );
+      return shallow(<PanelBody>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </PanelBody>);
     }
 
     it('has 1 child and 3 grandchildren', () => {
@@ -127,11 +121,9 @@ describe('Panel', () => {
 
   describe('PanelFooter', () => {
     function getFooter() {
-      return shallow(
-        <PanelFooter>
+      return shallow(<PanelFooter>
           This is the footer
-        </PanelFooter>
-      );
+                     </PanelFooter>);
     }
 
     it('renders correct text, style, and children', () => {

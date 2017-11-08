@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+/* eslint-disable */
+
 export const props = {
   id: 'f219e02d-68c5-2669-a641-d7bf45476dd0',
   config: {

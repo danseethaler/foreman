@@ -1,19 +1,21 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import helpers from '../../common/helpers';
 import PieChart from '../common/charts/PieChart/';
 import {
   getLargePieChartConfig,
-  navigateToSearch
+  navigateToSearch,
 } from '../../../services/ChartService';
-import ChartModal from './ChartModal';
-import Loader from '../common/Loader';
+import PanelBody from '../common/Panel/PanelBody';
+import MessageBox from '../common/MessageBox';
 import Panel from '../common/Panel/Panel';
 import PanelHeading from '../common/Panel/PanelHeading';
 import PanelTitle from '../common/Panel/PanelTitle';
-import PanelBody from '../common/Panel/PanelBody';
+import Loader from '../common/Loader';
+
+import ChartModal from './ChartModal';
 import './StatisticsChartsListStyles.css';
-import MessageBox from '../common/MessageBox';
 
 class ChartBox extends React.Component {
   constructor(props) {
@@ -39,14 +41,14 @@ class ChartBox extends React.Component {
 
     const modalConfig = getLargePieChartConfig({
       data: this.props.chart.data,
-      id: chart.id + 'Modal'
+      id: `${chart.id}Modal`,
     });
 
     const tooltip = {
       onClick: this.onClick,
       title: this.props.tip,
       'data-toggle': 'tooltip',
-      'data-placement': 'top'
+      'data-placement': 'top',
     };
     const onclickChartClicked = chart.search && chart.search.match(/=$/) ?
       null :
@@ -54,7 +56,7 @@ class ChartBox extends React.Component {
 
     const _chart = (
       <PieChart
-        key={this.props.chart.id + '-chart'}
+        key={`${this.props.chart.id}-chart`}
         data={this.props.chart.data}
         onclick={onclickChartClicked}
       />
@@ -63,7 +65,7 @@ class ChartBox extends React.Component {
     const error = (
       <MessageBox
         msg={this.props.errorText}
-        key={this.props.chart.id + '-error'}
+        key={`${this.props.chart.id}-error`}
         icontype="error-circle-o"
       />
     );
@@ -99,7 +101,7 @@ ChartBox.propTypes = {
   modalConfig: PropTypes.object,
   id: PropTypes.string.isRequired,
   noDataMsg: PropTypes.string,
-  errorText: PropTypes.string
+  errorText: PropTypes.string,
 };
 
 export default ChartBox;

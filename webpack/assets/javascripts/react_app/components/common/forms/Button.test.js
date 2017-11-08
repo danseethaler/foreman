@@ -1,12 +1,13 @@
 // Configure Enzyme
-import { configure } from 'enzyme';
+// Configure Enzyme
 import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
 import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-
+import { configure, shallow } from 'enzyme';
 import React from 'react';
+
 import Button from './Button';
+
+configure({ adapter: new Adapter() });
 
 describe('buttons', () => {
   it('should default to button type', () => {

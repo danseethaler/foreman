@@ -1,16 +1,23 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import 'babel-polyfill';
-require('expose-loader?$!expose-loader?jQuery!jquery');
-require('jquery-ujs');
-require('expose-loader?_!lodash');
-require('expose-loader?jstz!jstz');
-require('expose-loader?ipaddr!ipaddr.js');
-require('jquery.cookie');
-require('expose-loader?JsDiff!diff');
-require('./bundle_flot');
-require('./bundle_multiselect');
-require('./bundle_select2');
-require('./bundle_datatables');
+import 'jquery-ujs';
+import 'jquery.cookie';
+
+import 'expose-loader?ipaddr!ipaddr.js';
+import 'expose-loader?_!lodash';
+import 'expose-loader?jstz!jstz';
+import 'expose-loader?JsDiff!diff';
+import 'expose-loader?$!expose-loader?jQuery!jquery';
+
 import compute from './foreman_compute_resource';
+import './bundle_flot';
+import './bundle_multiselect';
+import './bundle_select2';
+import './bundle_datatables';
 
 window.tfm = Object.assign(window.tfm || {}, {
   tools: require('./foreman_tools'),
@@ -25,5 +32,5 @@ window.tfm = Object.assign(window.tfm || {}, {
   numFields: require('./jquery.ui.custom_spinners'),
   reactMounter: require('./react_app/common/MountingService'),
   editor: require('./foreman_editor'),
-  nav: require('./foreman_navigation')
+  nav: require('./foreman_navigation'),
 });
