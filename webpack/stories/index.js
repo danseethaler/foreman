@@ -13,6 +13,7 @@ import PowerStatusInner from
  '../assets/javascripts/react_app/components/hosts/powerStatus/powerStatusInner';
 import Store from '../assets/javascripts/react_app/redux';
 import Toast from '../assets/javascripts/react_app/components/toastNotifications/toastListitem';
+import SearchBar from '../assets/javascripts/react_app/components/movetopf/SearchBox';
 import StorageContainer from '../assets/javascripts/react_app/components/hosts/storage/vmware';
 import * as VMWareData from './data/storage/vmware';
 
@@ -93,12 +94,31 @@ storiesOf('Notifications', module)
     />
   );
 
-storiesOf('Host VMWare Storage', module)
-  .add('default state for new host', () =>
-    <StorageContainer store={Store} data={VMWareData.state1} />
-  )
-  .add('multiple controllers', () => <StorageContainer store={Store} data={VMWareData.state2} />)
-  .add('on clone', () => <StorageContainer store={Store} data={VMWareData.clone} />)
-  .add('without any controllers', () =>
-    <StorageContainer store={Store} data={VMWareData.emptyState} />
+const filterItems = [
+  {
+    title: 'Available'
+  },
+  {
+    title: 'Enabled'
+  },
+  {
+    title: 'Both'
+  }
+];
+
+const autocompleteOptions = ['one', 'two', 'three', 'four', 'five'];
+
+storiesOf('Form fields', module)
+  .add('interactive search bar', () =>
+    <SearchBar autocompleteOptions={autocompleteOptions} filterItems={filterItems} />
   );
+
+storiesOf('Host VMWare Storage', module)
+.add('default state for new host', () =>
+  <StorageContainer store={Store} data={VMWareData.state1} />
+)
+.add('multiple controllers', () => <StorageContainer store={Store} data={VMWareData.state2} />)
+.add('on clone', () => <StorageContainer store={Store} data={VMWareData.clone} />)
+.add('without any controllers', () =>
+  <StorageContainer store={Store} data={VMWareData.emptyState} />
+);
