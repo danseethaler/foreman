@@ -1,13 +1,14 @@
 // Configure Enzyme
-import { configure } from 'enzyme';
+// Configure Enzyme
 import Adapter from 'enzyme-adapter-react-16';
+import { configure, shallow } from 'enzyme';
+import React from 'react';
+
+import Icon from './';
+
 configure({ adapter: new Adapter() });
 
 jest.unmock('./');
-
-import React from 'react';
-import { shallow } from 'enzyme';
-import Icon from './';
 
 describe('Icon', () => {
   it('displays icon css', () => {
